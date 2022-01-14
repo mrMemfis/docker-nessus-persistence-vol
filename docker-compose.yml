@@ -1,0 +1,19 @@
+version: '3.1'
+
+services:
+
+  nessus:
+    image: tenableofficial/nessus:latest
+    restart: always
+    container_name: nessus-official
+    environment:
+      USERNAME: ${NESSUS_USER}
+      PASSWORD: ${NESSUS_PASS}
+      ACTIVATION_CODE: ${NESSUS_ACTIVATION_CODE}
+    ports:
+      - 8834:8834
+    volumes:
+      - nessuspersistence:/opt/nessus
+volumes:
+  nessuspersistence:
+    external: true
